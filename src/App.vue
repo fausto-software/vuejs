@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp > 27 ? 'warm' : ''">
+  <!-- <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp > 27 ? 'warm' : ''">
     <main>
       <div class="search-box">
         <input type="text" name="" class="search-bar" placeholder="Pesquise a cidade especifica" v-model="query" @keypress="fetchWeather">
@@ -19,51 +19,66 @@
       </div>
     </main>
 
-  </div>
-
+  </div> -->
+<Card/>
 </template>
 
 <script>
+
+// import card from './assets/card';
+import card from './card.vue';
+import Card from './card.vue';
 export default {
-  name: 'app',
-  data(){
-    return{
-        api_key:'60a9113ded9d9279ef7800dcd432c9b8',
-        url_base:'https://api.openweathermap.org/data/2.5/',
-        query:'',
-        weather: {}
-    }
-  },
-  methods:{
-   fetchWeather(e){
-    if(e.key=="Enter"){
-      fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
-        .then(res=>{
-          return res.json();
-        }).then(this.setResults);
-    }
-   }, setResults(results){
-      this.weather = results;
-   },
-   dateBuilder () {
-      let d = new Date();
-      let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-      let days = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sabado", "Domingo"];
-
-      let day = days[d.getDay()];
-      let date = d.getDate();
-      let month = months[d.getMonth()];
-      let year = d.getFullYear();
-
-      return `${day} ${date} ${month} ${year}`;
-    }
-  }
-
+    // name: "card",
+    props: {
+        // msg: String
+        card
+    },
+    components: { Card }
 }
+
+
+
+// export default {
+//   name: 'app',
+//   data(){
+//     return{
+//         api_key:'60a9113ded9d9279ef7800dcd432c9b8',
+//         url_base:'https://api.openweathermap.org/data/2.5/',
+//         query:'',
+//         weather: {}
+//     }
+//   },
+//   methods:{
+//    fetchWeather(e){
+//     if(e.key=="Enter"){
+//       fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+//         .then(res=>{
+//           return res.json();
+//         }).then(this.setResults);
+//     }
+//    }, setResults(results){
+//       this.weather = results;
+//    },
+//    dateBuilder () {
+//       let d = new Date();
+//       let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+//       let days = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sabado", "Domingo"];
+
+//       let day = days[d.getDay()];
+//       let date = d.getDate();
+//       let month = months[d.getMonth()];
+//       let year = d.getFullYear();
+
+//       return `${day} ${date} ${month} ${year}`;
+//     }
+//   }
+
+// }
 </script>
 
 <style>
-  *{
+  /* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -162,7 +177,7 @@ export default {
     font-style: italic;
     text-shadow: 3px 6px rgba(0,0,0,0.25);
   }
-
+ */
 
 
 </style>
